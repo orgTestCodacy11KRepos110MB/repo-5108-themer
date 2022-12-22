@@ -3,10 +3,12 @@ import { colors } from '@themerdev/colors-default';
 import { describe, expect, it } from 'vitest';
 
 describe('themer "shirts" wallpaper', () => {
-  it(`should return 4 PNG files to write`, async () => {
-    const files = await Promise.all(render(colors, {}));
-    expect(files.length).toBe(4);
-    expect(files.filter((file) => /\.png/.test(file.name)).length).toBe(4);
+  it(`should return PNG data`, async () => {
+    const files = await Promise.all(
+      render(colors, { 'themer-wallpaper-shirts-size': '600x600' }),
+    );
+    expect(files.length).toBe(2);
+    expect(files.filter((file) => /\.png/.test(file.name)).length).toBe(2);
   });
   it('should list output files', async () => {
     const files = await Promise.all(

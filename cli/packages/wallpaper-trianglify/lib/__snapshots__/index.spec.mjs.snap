@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`themer trianglify wallpaper > should list output files 1`] = `
+exports[`themer "trianglify" wallpaper > should list output files 1`] = `
 "
 Files generated:
 

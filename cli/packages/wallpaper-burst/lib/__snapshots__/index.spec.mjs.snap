@@ -4,9 +4,7 @@ exports[`themer "burst" wallpaper > should list output files 1`] = `
 "
 Files generated:
 
-* \`themer-wallpaper-burst-dark-2880x1800.png\`
-* \`themer-wallpaper-burst-light-2880x1800.png\`
-* \`themer-wallpaper-burst-dark-750x1334.png\`
-* \`themer-wallpaper-burst-light-750x1334.png\`
+* \`themer-wallpaper-burst-dark-1000x1000.png\`
+* \`themer-wallpaper-burst-light-1000x1000.png\`
 "
 `;
