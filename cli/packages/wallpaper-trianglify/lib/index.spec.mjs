@@ -1,23 +1,22 @@
-import { colors } from '@themerdev/colors-default';
 import { render, renderInstructions } from './index.mjs';
-import { describe, expect, it } from 'vitest';
+import { colors } from '@themerdev/colors-default';
+import test from 'ava';
 
-describe('themer "trianglify" wallpaper', () => {
-  it(`should return PNG data`, async () => {
-    const files = await Promise.all(
-      render(colors, { 'themer-wallpaper-trianglify-size': '600x600' }),
-    );
-    expect(files.length).toBe(4);
-    expect(files.filter((file) => /\.png/.test(file.name)).length).toBe(4);
-  });
-  it('should list output files', async () => {
-    const files = await Promise.all(
-      render(colors, {
-        'themer-wallpaper-trianglify-size': '1000x1000',
-        'themer-wallpaper-trianglify-variance': '0.5',
-      }),
-    );
-    const instructions = renderInstructions(files.map(({ name }) => name));
-    expect(instructions).toMatchSnapshot();
-  });
+test('themer "trianglify" wallpaper returns PNG data', async (t) => {
+  const files = await Promise.all(
+    render(colors, { 'themer-wallpaper-trianglify-size': '600x600' }),
+  );
+  t.is(files.length, 4);
+  t.is(files.filter((file) => /\.png/.test(file.name)).length, 4);
+});
+
+test('themer "trianglify" wallpaper lists output files', async (t) => {
+  const files = await Promise.all(
+    render(colors, {
+      'themer-wallpaper-trianglify-size': '1000x1000',
+      'themer-wallpaper-trianglify-variance': '0.5',
+    }),
+  );
+  const instructions = renderInstructions(files.map(({ name }) => name));
+  t.snapshot(instructions);
 });

@@ -1,20 +1,19 @@
 import { render, renderInstructions } from './index.mjs';
 import { colors } from '@themerdev/colors-default';
-import { describe, expect, it } from 'vitest';
+import test from 'ava';
 
-describe('themer "diamonds" wallpaper', () => {
-  it(`should return PNG data`, async () => {
-    const files = await Promise.all(
-      render(colors, { 'themer-wallpaper-diamonds-size': '600x600' }),
-    );
-    expect(files.length).toBe(2);
-    expect(files.filter((file) => /\.png/.test(file.name)).length).toBe(2);
-  });
-  it('should list output files', async () => {
-    const files = await Promise.all(
-      render(colors, { 'themer-wallpaper-diamonds-size': '1000x1000' }),
-    );
-    const instructions = renderInstructions(files.map(({ name }) => name));
-    expect(instructions).toMatchSnapshot();
-  });
+test('themer "diamonds" wallpaper returns PNG data', async (t) => {
+  const files = await Promise.all(
+    render(colors, { 'themer-wallpaper-diamonds-size': '600x600' }),
+  );
+  t.is(files.length, 2);
+  t.is(files.filter((file) => /\.png/.test(file.name)).length, 2);
+});
+
+test('themer "diamonds" wallpaper lists output files', async (t) => {
+  const files = await Promise.all(
+    render(colors, { 'themer-wallpaper-diamonds-size': '1000x1000' }),
+  );
+  const instructions = renderInstructions(files.map(({ name }) => name));
+  t.snapshot(instructions);
 });

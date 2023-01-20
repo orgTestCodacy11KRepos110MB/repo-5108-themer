@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepublishOnly": "cp ../../../LICENSE.md ./",
-    "test": "vitest"
+    "test": "ava"
   },
   "keywords": [
     "themer",
@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@themerdev/colors-default": "^2.0.0",
-    "vitest": "^0.25.1"
+    "ava": "^5.1.0"
   },
   "peerDependencies": {
     "themer": "^4"

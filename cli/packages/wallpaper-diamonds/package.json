@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepublishOnly": "cp ../../../LICENSE.md ./",
-    "test": "vitest"
+    "test": "ava"
   },
   "author": "mjswensen",
   "license": "MIT",
@@ -38,6 +38,6 @@
   ],
   "devDependencies": {
     "@themerdev/colors-default": "^1.0.11",
-    "vitest": "^0.25.1"
+    "ava": "^5.1.0"
   }
 }

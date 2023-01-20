@@ -1,32 +1,30 @@
 import { getSizes, getVariances } from './opts.mjs';
-import { describe, expect, it } from 'vitest';
+import test from 'ava';
 
-describe('@themerdev/wallpaper-trianglify options', () => {
-  it('should return proper defaults if none provided', () => {
-    expect(getSizes()).toMatchSnapshot();
-    expect(getVariances()).toMatchSnapshot();
-  });
-  it('should parse a single resolution option', () => {
-    expect(getSizes('200x200')).toEqual([{ h: 200, w: 200 }]);
-  });
-  it('should parse multiple resolution options', () => {
-    expect(getSizes(['100x200', '300x400'])).toEqual([
-      { w: 100, h: 200 },
-      { w: 300, h: 400 },
-    ]);
-  });
-  it('should throw when a malformed resolution option is given', () => {
-    expect(() => getSizes('100xFoo')).toThrow();
-  });
-  it('should parse a single variance option', () => {
-    expect(getVariances('0.61')).toEqual([0.61]);
-  });
-  it('should parse multiple variance options', () => {
-    expect(getVariances(['0.333', '0.1', '1'])).toEqual([0.333, 0.1, 1]);
-  });
-  it('should throw when an invalid variance option is given', () => {
-    expect(() => getVariances('1.1')).toThrow();
-    expect(() => getVariances('-1')).toThrow();
-    expect(() => getVariances('foo')).toThrow();
-  });
+test('options shoult return proper defaults if none provided', (t) => {
+  t.snapshot(getSizes());
+  t.snapshot(getVariances());
+});
+test('options should parse a single resolution option', (t) => {
+  t.deepEqual(getSizes('200x200'), [{ h: 200, w: 200 }]);
+});
+test('options should parse multiple resolution options', (t) => {
+  t.deepEqual(getSizes(['100x200', '300x400']), [
+    { w: 100, h: 200 },
+    { w: 300, h: 400 },
+  ]);
+});
+test('options should throw when a malformed resolution option is given', (t) => {
+  t.throws(() => getSizes('100xFoo'));
+});
+test('options should parse a single variance option', (t) => {
+  t.deepEqual(getVariances('0.61'), [0.61]);
+});
+test('options should parse multiple variance options', (t) => {
+  t.deepEqual(getVariances(['0.333', '0.1', '1']), [0.333, 0.1, 1]);
+});
+test('options should throw when an invalid variance option is given', (t) => {
+  t.throws(() => getVariances('1.1'));
+  t.throws(() => getVariances('-1'));
+  t.throws(() => getVariances('foo'));
 });
